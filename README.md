@@ -6,6 +6,7 @@ zig build play
 
 The error:
 
+```
 $ zigr build play
 LLVM ERROR: Cannot select: 0x7fa20895d480: i64 = bitcast 0x7fa20895d418
   0x7fa20895d418: i32,ch,glue = CopyFromReg 0x7fa20895d3b0, Register:i32 %eax, 0x7fa20895d3b0:1

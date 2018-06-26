@@ -9,9 +9,6 @@ pub use @cImport({
     @cDefine("SOKOL_GLCORE33", "1");
     @cInclude("sokol_gfx.h");
 
-    @cDefine("SOKOL_IMPL", "1");
-    @cInclude("sokol_gfx.h");
-
 });
 
 pub fn ptr(p: var) t: {

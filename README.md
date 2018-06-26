@@ -4,6 +4,8 @@ To build:
 zig build play
 ```
 
+The offending line is a [a @ptrCast in src/main.zig](https://github.com/kevinw/sokol-zig/blob/bug-llvm-cannot-select/src/main.zig#L54).
+
 The error:
 
 ```

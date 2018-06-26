@@ -1,4 +1,5 @@
-#include "epoxy/gl.h"
+#include <epoxy/gl.h>
+
 #include "GLFW/glfw3.h"
 #include "png.h"
 #include "math.h"

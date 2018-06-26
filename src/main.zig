@@ -19,6 +19,14 @@ pub fn main() void {
     }
     defer c.glfwTerminate();
 
+    c.glfwWindowHint(c.GLFW_CONTEXT_VERSION_MAJOR, 3);
+    c.glfwWindowHint(c.GLFW_CONTEXT_VERSION_MINOR, 3);
+    c.glfwWindowHint(c.GLFW_OPENGL_FORWARD_COMPAT, c.GL_TRUE);
+    c.glfwWindowHint(c.GLFW_OPENGL_PROFILE, c.GLFW_OPENGL_CORE_PROFILE);
+    var w = c.glfwCreateWindow(640, 480, c"Sokol Triangle GLFW", null, null);
+    c.glfwMakeContextCurrent(w);
+    c.glfwSwapInterval(1);
+
     _ = c.printf(c"calling sokol init\n");
 
     var desc:c.sg_desc = undefined;
@@ -30,4 +38,19 @@ pub fn main() void {
     c.sg_setup(desc_ptr);
 
     _ = c.printf(c"did do sokol init\n");
+
+    const vertices = []f32{
+        0.0, 0.5, 0.5,     1.0, 0.0, 0.0, 1.0,
+        0.5, -0.5, 0.5,    0.0, 1.0, 0.0, 1.0,
+        -0.5, -0.5, 0.5,   0.0, 0.0, 1.0, 1.0
+    };
+
+    var buffer_desc:c.sg_buffer_desc = undefined;
+    {
+        buffer_desc.size = @sizeOf(@typeOf(vertices));
+        buffer_desc.content = @ptrCast(?*const c_void, &vertices);
+    }
+
+    const b_ptr = @ptrCast([*]const c.sg_buffer_desc, &buffer_desc);
+    const vbuf = c.sg_make_buffer(b_ptr);
 }
